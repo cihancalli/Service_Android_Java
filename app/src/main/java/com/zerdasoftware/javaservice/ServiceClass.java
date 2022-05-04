@@ -20,19 +20,28 @@ public class ServiceClass extends Service {
 
     @Override
     public void onCreate() {
-        Log.d(TAG, "onCreate: ");
+        String currentThread = Thread.currentThread().getName();
+        Log.d(TAG, "onCreate: " + currentThread);
         super.onCreate();
     }
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "onDestroy: ");
+        String currentThread = Thread.currentThread().getName();
+        Log.d(TAG, "onDestroy: " + currentThread);
         super.onDestroy();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand: ");
+        String currentThread = Thread.currentThread().getName();
+        Log.d(TAG, "onStartCommand: " + currentThread);
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 }
